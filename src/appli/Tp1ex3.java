@@ -12,9 +12,6 @@ import java.util.Scanner;
  * Test class
  */
 public class Tp1ex3 {
-
-        static Color currentPlayer = Color.WHITE;
-
         /**
          * Main class used for the test
          * @param args used for in-line arguments,take no arguments
@@ -32,30 +29,26 @@ public class Tp1ex3 {
 
                 Rook myRook2 = new Rook(new Coord(1, 3), Color.BLACK, myBoard);
 
-                System.out.println("Player turn : "+ currentPlayer);
+                System.out.println("Player turn : "+ myBoard.getCurrentPlayer());
 
                 myBoard.smartPrint();
 
                 while (true){
                         System.out.print("Enter a string (xy xy) : ");
-                        //Scanner scanner = new Scanner(System. in);
                         String inputString = scanner. nextLine();
 
                         if (inputString.equals("s")){
                                 save(myBoard);
                         }else if (inputString.equals("l")){
-                                myBoard= load(myBoard);
-                                System.out.println("Player turn : "+ currentPlayer);
+                                myBoard= load();
+                                System.out.println("Player turn : "+ myBoard.getCurrentPlayer());
                                 myBoard.smartPrint();
                         } else {
                                 assistedMove(inputString, myBoard);
-                                System.out.println("Player turn : "+ currentPlayer);
-
+                                System.out.println("Player turn : "+ myBoard.getCurrentPlayer());
                                 myBoard.smartPrint();
                         }
-
                 }
-
         }
 
         public static void save(ChessBoard board){
@@ -71,7 +64,7 @@ public class Tp1ex3 {
                 }
         }
 
-        public static ChessBoard load(ChessBoard board) throws IOException, ClassNotFoundException {
+        public static ChessBoard load() throws IOException, ClassNotFoundException {
 
                 FileInputStream fi = new FileInputStream(new File("saveGame.ser"));
                 ObjectInputStream oi = new ObjectInputStream(fi);
@@ -80,9 +73,6 @@ public class Tp1ex3 {
                 return (ChessBoard) oi.readObject();
         }
 
-
-
-
         public static void assistedMove(String userInput, ChessBoard board) {
                 String[] parts = userInput.split(" ");
                 String[] posPieceStart = parts[0].split("");
@@ -90,14 +80,10 @@ public class Tp1ex3 {
 
                 Piece pieceToMove = (Piece) board.getPiece(Integer.parseInt(posPieceStart[0])-1,Integer.parseInt(posPieceStart[1])-1);
                 if (pieceToMove != null){
-                        if (pieceToMove.getCol() == currentPlayer){
+                        if (pieceToMove.getCol() == board.getCurrentPlayer()){
                                 try {
                                         pieceToMove.move(new Coord(Integer.parseInt(posPieceArrived[0]),Integer.parseInt(posPieceArrived[1])));
-                                        if (currentPlayer == Color.WHITE){
-                                                currentPlayer = Color.BLACK;
-                                        } else {
-                                                currentPlayer = Color.WHITE;
-                                        }
+                                        board.nextTurn();
                                 } catch (Exception e){
                                         e.printStackTrace();
                                 }

@@ -24,10 +24,7 @@ public abstract class Piece implements Movable, Serializable {
         this.board = board;
         this.col = col;
 
-        //this.board.cases[place.x-1][place.y-1].setPiece(this);
         this.board.setOccupation(this.place,this);
-
-
     }
 
     /**
@@ -43,8 +40,6 @@ public abstract class Piece implements Movable, Serializable {
         } else {
             throw new IllegalMove("illegal move : " + this.getCol() + " " + this.getClass().getSimpleName() + this);
         }
-
-
     }
 
     protected abstract boolean isValidMove(Coord c) throws IllegalPosition;

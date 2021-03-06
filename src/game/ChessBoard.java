@@ -9,7 +9,19 @@ import java.io.Serializable;
 public class ChessBoard implements Serializable {
 
     private final Case[][] cases;
+    private Color currentPlayer;
 
+    public Color getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void nextTurn() {
+        if (this.currentPlayer == Color.WHITE){
+            this.currentPlayer = Color.BLACK;
+        } else {
+            this.currentPlayer = Color.WHITE;
+        }
+    }
     /**
      *Chessboard constructor, define the Chessboard dimension.
      // * @param cases Number of cases in rows and column
@@ -17,7 +29,7 @@ public class ChessBoard implements Serializable {
 
     public ChessBoard() {
         this.cases = new Case[8][8];
-
+        this.currentPlayer = Color.WHITE;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 this.cases[j][i] = new Case();

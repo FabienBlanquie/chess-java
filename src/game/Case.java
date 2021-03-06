@@ -14,10 +14,6 @@ public class Case implements Serializable {
         this.piece = piece;
     }
 
-    //public Case(Movable piece) {
-    //    this.piece = piece;
-    //}
-
     public boolean isOccupied() {
         return this.piece != null;
     }
