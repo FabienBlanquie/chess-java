@@ -12,9 +12,6 @@ public class ChessBoard {
      *Chessboard constructor, define the Chessboard dimension.
      // * @param cases Number of cases in rows and column
      */
-    //public ChessBoard(Case[][] cases) {
-    //    this.cases = cases;
-    //}
 
     public ChessBoard() {
         this.cases = new Case[8][8];
@@ -25,6 +22,11 @@ public class ChessBoard {
             }
         }
     }
+
+    /*
+    public Movable getPiece(Case[][] myCase){
+        return cases[0][0].getPiece();
+    }*/
 
 
     /**
@@ -38,13 +40,6 @@ public class ChessBoard {
             throw new IllegalPosition("Out of range chessboard");
         }
         return this.cases[pos.x][pos.y].isOccupied();
-        /*
-        if (cases[pos.x][pos.y].isOccupied()) {
-                return true;
-            } else {
-                return false;
-            }
-         */
     }
 
 
@@ -80,19 +75,4 @@ public class ChessBoard {
         }
         System.out.println("  1  2  3  4  5  6  7  8");
     }
-
-    /*
-    public void smartPrint() {
-        for (int i = 8; i > 0; i--) {
-            for (int j = 0; j < 8; j++) {
-                if (this.cases[i - 1][j].isOccupied() == true) {
-                    System.out.print(" " + this.cases[i - 1][j].getPiece() + " ");
-                } else {
-                    System.out.print(" □ ");
-                }
-            }
-        }
-    }
-
-     */
 }

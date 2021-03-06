@@ -36,9 +36,7 @@ public class Tp1ex3 {
 
                 Rook myRook2 = new Rook(new Coord(1, 3), Color.BLACK, myBoard);
 
-                String move1 = "11 12";
-
-                System.out.println("Player turn : \n"+ currentPlayer);
+                System.out.println("Player turn : "+ currentPlayer);
 
                 myBoard.smartPrint();
 
@@ -49,7 +47,7 @@ public class Tp1ex3 {
                         String inputString = scanner. nextLine();
 
                         assistedMove(inputString, myBoard);
-                        System.out.println("Player turn : \n"+ currentPlayer);
+                        System.out.println("Player turn : "+ currentPlayer);
 
                         myBoard.smartPrint();
                 }
@@ -76,6 +74,9 @@ public class Tp1ex3 {
                                 } catch (Exception e){
                                         e.printStackTrace();
                                 }
+                        }
+                        else {
+                                System.out.println(pieceToMove.getCol() + " piece, wrong color.");
                         }
                 }
         }

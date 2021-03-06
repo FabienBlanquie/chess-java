@@ -39,7 +39,7 @@ public abstract class Piece implements Movable {
             setPlace(c);
             board.setOccupation(c, this);
         } else {
-            throw new IllegalMove("illegal move");
+            throw new IllegalMove("illegal move : " + this.getCol() + " " + this.getClass().getSimpleName() + this);
         }
 
 
