@@ -6,6 +6,11 @@ import game.boardException.IllegalPosition;
 import game.chessPiece.*;
 
 import java.io.*;
+import java.sql.Array;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -17,11 +22,18 @@ public class Tp1ex3 {
          * @param args used for in-line arguments,take no arguments
          * @throws IllegalPosition error in case of illegal position
         //myBoard = {ChessBoard@462}*/
+
+        public static Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        public  static ArrayList<String> moves = new ArrayList<String>();
+
         public static void main(String[] args) throws IllegalPosition, IllegalMove, IOException, ClassNotFoundException {
+
+                File myFile = new File(timestamp.getTime() +".txt");
+                System.out.println("Saved in :"+timestamp.getTime()+".txt");
+
 
                 System.out.println("Enter a string (xy xy) : ");
                 Scanner scanner = new Scanner(System. in);
-
 
                 ChessBoard myBoard = new ChessBoard();
 
@@ -36,7 +48,6 @@ public class Tp1ex3 {
                 while (true){
                         System.out.print("Enter a string (xy xy) : ");
                         String inputString = scanner. nextLine();
-
                         if (inputString.equals("s")){
                                 save(myBoard);
                         }else if (inputString.equals("l")){
@@ -45,6 +56,7 @@ public class Tp1ex3 {
                                 myBoard.smartPrint();
                         } else {
                                 assistedMove(inputString, myBoard);
+                                addMoveToTxt(inputString, myFile);
                                 System.out.println("Player turn : "+ myBoard.getCurrentPlayer());
                                 myBoard.smartPrint();
                         }
@@ -71,6 +83,20 @@ public class Tp1ex3 {
                 System.out.println("Serialized data loaded in ");
 
                 return (ChessBoard) oi.readObject();
+        }
+
+        public static void addMoveToTxt(String userInput, File fileName) throws IOException {
+                try {
+                        moves.add(userInput);
+                        FileWriter fw = new FileWriter(fileName);
+                        for (String str : moves) {
+                                fw.write(str + System.lineSeparator());
+                        }
+                        fw.close();
+                        System.out.println("Le texte a été écrit avec succès");
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
         }
 
         public static void assistedMove(String userInput, ChessBoard board) {
