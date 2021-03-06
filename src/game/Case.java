@@ -1,6 +1,8 @@
 package game;
 
-public class Case {
+import java.io.Serializable;
+
+public class Case implements Serializable {
 
     private Movable piece = null;
 

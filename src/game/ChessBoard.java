@@ -1,12 +1,14 @@
 package game;
 import game.boardException.IllegalPosition;
 
+import java.io.Serializable;
+
 /**
  *Chessboard used to play
  */
-public class ChessBoard {
+public class ChessBoard implements Serializable {
 
-    public Case[][] cases;
+    private final Case[][] cases;
 
     /**
      *Chessboard constructor, define the Chessboard dimension.
@@ -23,11 +25,9 @@ public class ChessBoard {
         }
     }
 
-    /*
-    public Movable getPiece(Case[][] myCase){
-        return cases[0][0].getPiece();
-    }*/
-
+    public Movable getPiece(int x, int y){
+        return cases[x][y].getPiece();
+    }
 
     /**
      *Check if the position is occupied

@@ -51,7 +51,6 @@ public class Knight extends Piece {
             if (((abs(c.x - place.x) == 1) && (abs(c.y - place.y) == 2)) || ((abs(c.x - place.x) == 2) && (abs(c.y - place.y) == 1))){
                 return true;
             }
-            //revoir ça
             return false;
     }
 

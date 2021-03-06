@@ -3,10 +3,12 @@ package game;
 import game.boardException.IllegalMove;
 import game.boardException.IllegalPosition;
 
+import java.io.Serializable;
+
 /**
  *Mother Class for the chessboard pieces
  */
-public abstract class Piece implements Movable {
+public abstract class Piece implements Movable, Serializable {
     protected Coord place;
     protected ChessBoard board;
     protected Color col;

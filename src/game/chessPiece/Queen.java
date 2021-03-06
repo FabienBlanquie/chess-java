@@ -25,29 +25,6 @@ public class Queen extends Piece {
         super(place, board, col);
     }
 
-    /**
-     * Piece movement rule : move like a rook or bishop
-     * @param c new coordinate position
-     */
-    /*
-    public void move(Coord c) {
-        try {
-        //    if (!board.isOccupied(c)){
-                if (((c.x != place.x)&&(c.y == place.y))||((c.x == place.x)&&(c.y != place.y ))||abs(place.x - c.x) == abs(place.y - c.y)){
-                    if (correctPath(this.place, c)) {
-                        board.setOccupation(place, null);
-                        setPlace(c);
-                        board.setOccupation(c, this);
-                    }
-                } else {
-                    throw new IllegalMove("Queen illegal move");
-                }
-        //    }
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
     @Override
     protected boolean isValidMove(Coord c) {
         try {

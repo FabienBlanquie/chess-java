@@ -1,9 +1,11 @@
 package game;
 
+import java.io.Serializable;
+
 /**
  * Matrix coordinate
  */
-public class Coord {
+public class Coord implements Serializable {
 
     public int x;
     public int y;
