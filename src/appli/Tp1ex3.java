@@ -37,9 +37,41 @@ public class Tp1ex3 {
 
                 ChessBoard myBoard = new ChessBoard();
 
-                Rook myRook = new Rook(new Coord(1, 1), Color.WHITE, myBoard);
+                // My whites pieces
+                King myKingW = new King(new Coord(1, 4), Color.WHITE, myBoard);
+                Queen myQueenW = new Queen(new Coord(1, 5), Color.WHITE, myBoard);
+                Rook myTowerW1 = new Rook(new Coord(1, 1), Color.WHITE, myBoard);
+                Rook myTowerW2 = new Rook(new Coord(1, 8), Color.WHITE, myBoard);
+                Bishop myBishopW1 = new Bishop(new Coord(1, 3), Color.WHITE, myBoard);
+                Bishop myBishopW2 = new Bishop(new Coord(1, 6), Color.WHITE, myBoard);
+                Knight myKnightW1 = new Knight(new Coord(1, 2), Color.WHITE, myBoard);
+                Knight myKnightW2 = new Knight(new Coord(1, 7), Color.WHITE, myBoard);
+                Pawn myPawnW1 = new Pawn(new Coord(2, 1), Color.WHITE, myBoard);
+                Pawn myPawnW2 = new Pawn(new Coord(2, 2), Color.WHITE, myBoard);
+                Pawn myPawnW3 = new Pawn(new Coord(2, 3), Color.WHITE, myBoard);
+                Pawn myPawnW4 = new Pawn(new Coord(2, 4), Color.WHITE, myBoard);
+                Pawn myPawnW5 = new Pawn(new Coord(2, 5), Color.WHITE, myBoard);
+                Pawn myPawnW6 = new Pawn(new Coord(2, 6), Color.WHITE, myBoard);
+                Pawn myPawnW7 = new Pawn(new Coord(2, 7), Color.WHITE, myBoard);
+                Pawn myPawnW8 = new Pawn(new Coord(2, 8), Color.WHITE, myBoard);
 
-                Rook myRook2 = new Rook(new Coord(1, 3), Color.BLACK, myBoard);
+                // My blacks pieces
+                King myKingB = new King(new Coord(8, 4), Color.BLACK, myBoard);
+                Queen myQueenB = new Queen(new Coord(8, 5), Color.BLACK, myBoard);
+                Rook myTowerB1 = new Rook(new Coord(8, 1), Color.BLACK, myBoard);
+                Rook myTowerB2 = new Rook(new Coord(8, 8), Color.BLACK, myBoard);
+                Bishop myBishopB1 = new Bishop(new Coord(8, 3), Color.BLACK, myBoard);
+                Bishop myBishopB2 = new Bishop(new Coord(8, 6), Color.BLACK, myBoard);
+                Knight myKnightB1 = new Knight(new Coord(8, 2), Color.BLACK, myBoard);
+                Knight myKnightB2 = new Knight(new Coord(8, 7), Color.BLACK, myBoard);
+                Pawn myPawnB1 = new Pawn(new Coord(7, 1), Color.BLACK, myBoard);
+                Pawn myPawnB2 = new Pawn(new Coord(7, 2), Color.BLACK, myBoard);
+                Pawn myPawnB3 = new Pawn(new Coord(7, 3), Color.BLACK, myBoard);
+                Pawn myPawnB4 = new Pawn(new Coord(7, 4), Color.BLACK, myBoard);
+                Pawn myPawnB5 = new Pawn(new Coord(7, 5), Color.BLACK, myBoard);
+                Pawn myPawnB6 = new Pawn(new Coord(7, 6), Color.BLACK, myBoard);
+                Pawn myPawnB7 = new Pawn(new Coord(7, 7), Color.BLACK, myBoard);
+                Pawn myPawnB8 = new Pawn(new Coord(7, 8), Color.BLACK, myBoard);
 
                 System.out.println("Player turn : "+ myBoard.getCurrentPlayer());
 
@@ -51,9 +83,13 @@ public class Tp1ex3 {
                         if (inputString.equals("s")){
                                 save(myBoard);
                         }else if (inputString.equals("l")){
-                                myBoard= load();
+                                myBoard = load();
                                 System.out.println("Player turn : "+ myBoard.getCurrentPlayer());
                                 myBoard.smartPrint();
+                        }else if (inputString.equals("r")){
+                                System.out.println("Type file name : ");
+                                String fileName = scanner. nextLine();
+                                replay(fileName+".txt",myBoard);
                         } else {
                                 assistedMove(inputString, myBoard);
                                 addMoveToTxt(inputString, myFile);
@@ -85,7 +121,7 @@ public class Tp1ex3 {
                 return (ChessBoard) oi.readObject();
         }
 
-        public static void addMoveToTxt(String userInput, File fileName) throws IOException {
+        public static void addMoveToTxt(String userInput, File fileName) {
                 try {
                         moves.add(userInput);
                         FileWriter fw = new FileWriter(fileName);
@@ -93,10 +129,28 @@ public class Tp1ex3 {
                                 fw.write(str + System.lineSeparator());
                         }
                         fw.close();
-                        System.out.println("Le texte a été écrit avec succès");
                 } catch (Exception e) {
                         e.printStackTrace();
                 }
+        }
+
+        public static void replay(String fileName, ChessBoard myBoard){
+                try {
+                        InputStream game = new FileInputStream(fileName);
+                        InputStreamReader gameReader = new InputStreamReader(game);
+                        BufferedReader reader = new BufferedReader(gameReader);
+                        String ligne;
+                        while ((ligne = reader.readLine()) != null) {
+                                System.out.println(ligne);
+                                assistedMove(ligne, myBoard);
+                                myBoard.smartPrint();
+                                System.out.println("");
+                        }
+                        reader.close();
+                } catch (Exception e) {
+                        System.out.println(e.toString());
+                }
+
         }
 
         public static void assistedMove(String userInput, ChessBoard board) {
