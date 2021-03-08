@@ -1,12 +1,9 @@
 package game.chessPiece;
-import game.boardException.IllegalMove;
 import game.ChessBoard;
 import game.Color;
 import game.Coord;
 import game.Piece;
 import game.boardException.IllegalPosition;
-
-import static java.lang.Math.abs;
 
 /**
  * King chess piece
@@ -28,25 +25,6 @@ public class King extends Piece {
      * Piece movement rule : can only move to adjacent case
      * @param c new coordinate position
      */
-    /*
-    public void move(Coord c) {
-        try {
-          //  if (!board.isOccupied(c)) {
-                if (((c.x == place.x + 1) || (c.x == place.x - 1) || (c.x == place.x)) && ((c.y == place.y + 1) || (c.y == place.y - 1) || (c.y == place.y))) {
-                    if (correctPath(this.place, c)) {
-                        board.setOccupation(place, null);
-                        setPlace(c);
-                        board.setOccupation(c, this);
-                    }
-                } else {
-                    throw new IllegalMove("King illegal move");
-                }
-        //    }
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
     @Override
     protected boolean isValidMove(Coord c) throws IllegalPosition {
             if (((c.x == place.x + 1) || (c.x == place.x - 1) || (c.x == place.x)) && ((c.y == place.y + 1) || (c.y == place.y - 1) || (c.y == place.y))){
@@ -58,7 +36,7 @@ public class King extends Piece {
 
     /**
      * Used for the human display
-     * @return TODO
+     * @return
      */
     @Override
     public String toString(){

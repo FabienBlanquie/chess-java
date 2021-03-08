@@ -54,6 +54,12 @@ public abstract class Piece implements Movable, Serializable {
                 return false;
             }
         }
+        if (board.isOccupied(end)){
+            Piece arrivalPiece = (Piece) board.getPiece(end.x,end.y);
+            if (arrivalPiece.getCol() == this.getCol()){
+                return false;
+            }
+        }
         return true;
     }
 

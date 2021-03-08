@@ -1,7 +1,9 @@
 package game;
 import game.boardException.IllegalPosition;
+import game.chessPiece.King;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *Chessboard used to play
@@ -67,6 +69,21 @@ public class ChessBoard implements Serializable {
             } else {
                 throw new IllegalPosition("Out of chessboard position");
             }
+    }
+
+
+    public int numberOfKing(){
+        int numberOfKing = 0;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(cases[i][j].isOccupied()) {
+                    if (cases[i][j].getPiece().getClass().equals(King.class)) {
+                        numberOfKing++;
+                    }
+                }
+            }
+        }
+        return numberOfKing;
     }
 
     /**

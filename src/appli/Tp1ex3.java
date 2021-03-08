@@ -38,8 +38,9 @@ public class Tp1ex3 {
                 ChessBoard myBoard = new ChessBoard();
 
                 // My whites pieces
-                King myKingW = new King(new Coord(1, 4), Color.WHITE, myBoard);
-                Queen myQueenW = new Queen(new Coord(1, 5), Color.WHITE, myBoard);
+
+                King myKingW = new King(new Coord(1, 5), Color.WHITE, myBoard);
+                Queen myQueenW = new Queen(new Coord(1, 4), Color.WHITE, myBoard);
                 Rook myTowerW1 = new Rook(new Coord(1, 1), Color.WHITE, myBoard);
                 Rook myTowerW2 = new Rook(new Coord(1, 8), Color.WHITE, myBoard);
                 Bishop myBishopW1 = new Bishop(new Coord(1, 3), Color.WHITE, myBoard);
@@ -56,8 +57,8 @@ public class Tp1ex3 {
                 Pawn myPawnW8 = new Pawn(new Coord(2, 8), Color.WHITE, myBoard);
 
                 // My blacks pieces
-                King myKingB = new King(new Coord(8, 4), Color.BLACK, myBoard);
-                Queen myQueenB = new Queen(new Coord(8, 5), Color.BLACK, myBoard);
+                King myKingB = new King(new Coord(8, 5), Color.BLACK, myBoard);
+                Queen myQueenB = new Queen(new Coord(8, 4), Color.BLACK, myBoard);
                 Rook myTowerB1 = new Rook(new Coord(8, 1), Color.BLACK, myBoard);
                 Rook myTowerB2 = new Rook(new Coord(8, 8), Color.BLACK, myBoard);
                 Bishop myBishopB1 = new Bishop(new Coord(8, 3), Color.BLACK, myBoard);
@@ -77,7 +78,7 @@ public class Tp1ex3 {
 
                 myBoard.smartPrint();
 
-                while (true){
+                while (myBoard.numberOfKing()==2){
                         System.out.print("Enter a string (xy xy) : ");
                         String inputString = scanner. nextLine();
                         if (inputString.equals("s")){
@@ -97,6 +98,7 @@ public class Tp1ex3 {
                                 myBoard.smartPrint();
                         }
                 }
+                System.out.println(myBoard.getCurrentPlayer()+" loose.");
         }
 
         public static void save(ChessBoard board){
@@ -160,7 +162,7 @@ public class Tp1ex3 {
 
                 Piece pieceToMove = (Piece) board.getPiece(Integer.parseInt(posPieceStart[0])-1,Integer.parseInt(posPieceStart[1])-1);
                 if (pieceToMove != null){
-                        if (pieceToMove.getCol() == board.getCurrentPlayer()){
+                        if ((pieceToMove.getCol() == board.getCurrentPlayer())){
                                 try {
                                         pieceToMove.move(new Coord(Integer.parseInt(posPieceArrived[0]),Integer.parseInt(posPieceArrived[1])));
                                         board.nextTurn();

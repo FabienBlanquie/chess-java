@@ -32,41 +32,16 @@ public class Pawn extends Piece {
      * Piece movement rule : can only move in front of him 1 by 1, can move 2 cases on his first move
      * @param c new coordinate position
      */
-    /*
-    public void move(Coord c) {
-        try{
-        //    if (!board.isOccupied(c)){
-                if (((col==Color.WHITE)&&(c.x == place.x + 1)&&(c.y == place.y))||((col==Color.BLACK)&&(c.x == place.x - 1)&&(c.y == place.y))){
-                    if (correctPath(this.place, c)) {
-                        board.setOccupation(place, null);
-                        setPlace(c);
-                        board.setOccupation(c, this);
-                        firstMove = false;
-                    }
-                }else if (((firstMove)&&(col==Color.WHITE)&&(c.x == place.x + 2)&&(c.y == place.y))||((firstMove)&&(col==Color.BLACK)&&(c.x == place.x - 2)&&(c.y == place.y))){
-                    if (correctPath(this.place, c)) {
-                        board.setOccupation(place, null);
-                        setPlace(c);
-                        board.setOccupation(c, this);
-                        firstMove = false;
-                    }
-                } else {
-                    throw new IllegalMove("Pawn illegal move");
-                }
-        //    }
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
     @Override
     protected boolean isValidMove(Coord c) {
         try {
-            if (((col==Color.WHITE)&&(c.x == place.x + 1)&&(c.y == place.y))||((col==Color.BLACK)&&(c.x == place.x - 1)&&(c.y == place.y))){
+            if (((col==Color.WHITE)&&(c.x == place.x + 1)&&(c.y == place.y)&&!board.isOccupied(c))||((col==Color.BLACK)&&(c.x == place.x - 1)&&(c.y == place.y)&&!board.isOccupied(c))){
                 return true;
-            }else if((((firstMove)&&(col==Color.WHITE)&&(c.x == place.x + 2)&&(c.y == place.y))||((firstMove)&&(col==Color.BLACK)&&(c.x == place.x - 2)&&(c.y == place.y)))) {
+            }else if((((firstMove)&&(col==Color.WHITE)&&(c.x == place.x + 2)&&(c.y == place.y)&&!board.isOccupied(c))||((firstMove)&&(col==Color.BLACK)&&(c.x == place.x - 2)&&(c.y == place.y)&&!board.isOccupied(c)))) {
                 return true;
-            } else {
+            } else if(((col==Color.WHITE)&&(c.x == place.x + 1)&&((c.y == place.y+1)||(c.y == place.y-1))&&board.isOccupied(c))||((col==Color.BLACK)&&(c.x == place.x - 1)&&((c.y == place.y+1)||(c.y == place.y-1))&&board.isOccupied(c))) {
+                return true;
+            }else {
                 return false;
             }
         } catch (Exception e) {
