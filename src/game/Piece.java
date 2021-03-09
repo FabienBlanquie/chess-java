@@ -4,6 +4,8 @@ import game.boardException.IllegalMove;
 import game.boardException.IllegalPosition;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *Mother Class for the chessboard pieces
@@ -43,6 +45,22 @@ public abstract class Piece implements Movable, Serializable {
     }
 
     protected abstract boolean isValidMove(Coord c) throws IllegalPosition;
+
+    public List<Coord> legalMove() {
+        List<Coord> moveList = new ArrayList<Coord>();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                try {
+                    Coord myCord = new Coord(i+1,j+1);
+                    if (isValidMove(myCord)){
+                        moveList.add(myCord);
+                    }
+                } catch (Exception ignored) {
+                }
+            }
+        }
+        return moveList;
+    }
 
     protected boolean correctPath(Coord start, Coord end) throws IllegalPosition {
 

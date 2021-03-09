@@ -7,6 +7,9 @@ import game.Coord;
 import game.Piece;
 import game.boardException.IllegalPosition;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.lang.Math.abs;
 
 /**

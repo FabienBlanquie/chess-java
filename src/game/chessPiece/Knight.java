@@ -1,6 +1,5 @@
 package game.chessPiece;
 
-import game.boardException.IllegalMove;
 import game.ChessBoard;
 import game.Color;
 import game.Coord;
@@ -29,22 +28,6 @@ public class Knight extends Piece {
      * Piece movement rule : L shaped move with 2 cases in one direction and 1 in another
      * @param c new coordinate position
      */
-    /*
-    public void move(Coord c) {
-        try{
-        //    if (!board.isOccupied(c)) {
-                if (((abs(c.x - place.x) == 1) && (abs(c.y - place.y) == 2)) || ((abs(c.x - place.x) == 2) && (abs(c.y - place.y) == 1))) {
-                        board.setOccupation(place, null);
-                        setPlace(c);
-                        board.setOccupation(c, this);
-                } else {
-                    throw new IllegalMove("Knight illegal move");
-                }
-        //    }
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
 
     @Override
     protected boolean isValidMove(Coord c) {

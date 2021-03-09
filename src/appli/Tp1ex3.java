@@ -6,11 +6,8 @@ import game.boardException.IllegalPosition;
 import game.chessPiece.*;
 
 import java.io.*;
-import java.sql.Array;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -47,6 +44,7 @@ public class Tp1ex3 {
                 Bishop myBishopW2 = new Bishop(new Coord(1, 6), Color.WHITE, myBoard);
                 Knight myKnightW1 = new Knight(new Coord(1, 2), Color.WHITE, myBoard);
                 Knight myKnightW2 = new Knight(new Coord(1, 7), Color.WHITE, myBoard);
+
                 Pawn myPawnW1 = new Pawn(new Coord(2, 1), Color.WHITE, myBoard);
                 Pawn myPawnW2 = new Pawn(new Coord(2, 2), Color.WHITE, myBoard);
                 Pawn myPawnW3 = new Pawn(new Coord(2, 3), Color.WHITE, myBoard);
@@ -55,6 +53,8 @@ public class Tp1ex3 {
                 Pawn myPawnW6 = new Pawn(new Coord(2, 6), Color.WHITE, myBoard);
                 Pawn myPawnW7 = new Pawn(new Coord(2, 7), Color.WHITE, myBoard);
                 Pawn myPawnW8 = new Pawn(new Coord(2, 8), Color.WHITE, myBoard);
+
+
 
                 // My blacks pieces
                 King myKingB = new King(new Coord(8, 5), Color.BLACK, myBoard);
@@ -65,6 +65,7 @@ public class Tp1ex3 {
                 Bishop myBishopB2 = new Bishop(new Coord(8, 6), Color.BLACK, myBoard);
                 Knight myKnightB1 = new Knight(new Coord(8, 2), Color.BLACK, myBoard);
                 Knight myKnightB2 = new Knight(new Coord(8, 7), Color.BLACK, myBoard);
+
                 Pawn myPawnB1 = new Pawn(new Coord(7, 1), Color.BLACK, myBoard);
                 Pawn myPawnB2 = new Pawn(new Coord(7, 2), Color.BLACK, myBoard);
                 Pawn myPawnB3 = new Pawn(new Coord(7, 3), Color.BLACK, myBoard);
@@ -79,6 +80,7 @@ public class Tp1ex3 {
                 myBoard.smartPrint();
 
                 while (myBoard.numberOfKing()==2){
+                        myPawnB1.legalMove();
                         System.out.print("Enter a string (xy xy) : ");
                         String inputString = scanner. nextLine();
                         if (inputString.equals("s")){

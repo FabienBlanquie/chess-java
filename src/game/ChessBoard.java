@@ -3,7 +3,6 @@ import game.boardException.IllegalPosition;
 import game.chessPiece.King;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *Chessboard used to play

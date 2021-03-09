@@ -1,5 +1,4 @@
 package game.chessPiece;
-import game.boardException.IllegalMove;
 import game.ChessBoard;
 import game.Color;
 import game.Coord;
