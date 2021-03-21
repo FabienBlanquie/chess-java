@@ -2,7 +2,6 @@ package game;
 
 import game.boardException.IllegalMove;
 import game.boardException.IllegalPosition;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +43,18 @@ public abstract class Piece implements Movable, Serializable {
         }
     }
 
+    /**
+     * Abstract method used to check if the moved used by the piece is legal
+     * @param c Piece next position
+     * @return true if the move is legal
+     * @throws IllegalPosition if the position is illegal
+     */
     protected abstract boolean isValidMove(Coord c) throws IllegalPosition;
 
+    /**
+     * Check all cases on the board and return the possible move
+     * @return the list of possible move
+     */
     public List<Coord> legalMove() {
         List<Coord> moveList = new ArrayList<Coord>();
         for (int i = 0; i < 8; i++) {
@@ -62,11 +71,16 @@ public abstract class Piece implements Movable, Serializable {
         return moveList;
     }
 
+    /**
+     * Check if we encounter any piece on our way
+     * @param start Piece initial position
+     * @param end Piece targeted position
+     * @return return false if we encounter any piece before, of if the targeted piece is the same colour
+     * @throws IllegalPosition if the position is illegal
+     */
     protected boolean correctPath(Coord start, Coord end) throws IllegalPosition {
-
         int stepX = (int) Math.signum(end.x - start.x);
         int stepY = (int) Math.signum(end.y - start.y);
-
         for (Coord i = new Coord(start.x + 1 + stepX, start.y + stepY + 1); !((i.x == end.x) && (i.y == end.y)); i.x = i.x + stepX, i.y = i.y + stepY){
             if(board.isOccupied(i)){
                 return false;

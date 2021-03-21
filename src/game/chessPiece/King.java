@@ -24,19 +24,21 @@ public class King extends Piece {
     /**
      * Piece movement rule : can only move to adjacent case
      * @param c new coordinate position
+     * @return true if the move is valid
      */
     @Override
     protected boolean isValidMove(Coord c) throws IllegalPosition {
-            if (((c.x == place.x + 1) || (c.x == place.x - 1) || (c.x == place.x)) && ((c.y == place.y + 1) || (c.y == place.y - 1) || (c.y == place.y))){
-                if (correctPath(place,c))
-                    return true;
-            }
-            return false;
+        if (((c.x == place.x + 1) || (c.x == place.x - 1) || (c.x == place.x)) && ((c.y == place.y + 1) || (c.y == place.y - 1) || (c.y == place.y))){
+            if (correctPath(place,c))
+                return true;
+        }
+        return false;
     }
 
+
     /**
-     * Used for the human display
-     * @return
+     * Piece name in when used with the smartprint
+     * @return Piece name
      */
     @Override
     public String toString(){

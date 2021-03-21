@@ -22,17 +22,26 @@ public class Rook extends Piece {
         super(place, board, col);
     }
 
+    /**
+     * Piece name in when used with the smartprint
+     * @return Piece name
+     */
     @Override
     public String toString(){
         return col == Color.WHITE ? " ♖ " : " ♜ ";
     }
 
+    /**
+     * Piece movement rule : can move all the way on the same row or column
+     * @param c new coordinate position
+     * @return true if the move is valid
+     */
     @Override
     protected boolean isValidMove(Coord c) throws IllegalPosition {
-            if (((c.x != place.x)&&(c.y == place.y))||((c.x == place.x)&&(c.y != place.y ))){
-                if (correctPath(place,c))
-                    return true;
-            }
-                return false;
+        if (((c.x != place.x)&&(c.y == place.y))||((c.x == place.x)&&(c.y != place.y ))){
+            if (correctPath(place,c))
+                return true;
+        }
+        return false;
     }
 }

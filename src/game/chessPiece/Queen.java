@@ -24,6 +24,11 @@ public class Queen extends Piece {
         super(place, board, col);
     }
 
+    /**
+     * Piece movement rule : move like a Rook and bishop combined
+     * @param c new coordinate position
+     * @return true if the move is valid
+     */
     @Override
     protected boolean isValidMove(Coord c) {
         try {
@@ -39,6 +44,10 @@ public class Queen extends Piece {
         return false;
     }
 
+    /**
+     * Piece name in when used with the smartprint
+     * @return Piece name
+     */
     @Override
     public String toString(){
         return col == Color.WHITE ? " ♕ " : " ♛ ";

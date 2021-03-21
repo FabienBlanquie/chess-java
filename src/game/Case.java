@@ -2,6 +2,9 @@ package game;
 
 import java.io.Serializable;
 
+/**
+ * Case object used on the chessboard, hold a piece.
+ */
 public class Case implements Serializable {
 
     private Movable piece = null;

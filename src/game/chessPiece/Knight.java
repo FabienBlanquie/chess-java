@@ -5,7 +5,6 @@ import game.Color;
 import game.Coord;
 import game.Piece;
 import game.boardException.IllegalPosition;
-
 import static java.lang.Math.abs;
 
 /**
@@ -27,16 +26,24 @@ public class Knight extends Piece {
     /**
      * Piece movement rule : L shaped move with 2 cases in one direction and 1 in another
      * @param c new coordinate position
+     * @return true if the move is valid
      */
-
     @Override
-    protected boolean isValidMove(Coord c) {
-            if (((abs(c.x - place.x) == 1) && (abs(c.y - place.y) == 2)) || ((abs(c.x - place.x) == 2) && (abs(c.y - place.y) == 1))){
-                return true;
+    protected boolean isValidMove(Coord c) throws IllegalPosition {
+        if (((abs(c.x - place.x) == 1) && (abs(c.y - place.y) == 2)) || ((abs(c.x - place.x) == 2) && (abs(c.y - place.y) == 1))){
+            if (board.isOccupied(c)){
+                Piece targetPiece = (Piece) board.getPiece(c.x,c.y);
+                return targetPiece.getCol() != this.col;
             }
-            return false;
+            return true;
+        }
+        return false;
     }
 
+    /**
+     * Piece name in when used with the smartprint
+     * @return Piece name
+     */
     @Override
     public String toString(){
         return col == Color.WHITE ? " ♘ " : " ♞ ";

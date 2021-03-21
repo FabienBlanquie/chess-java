@@ -20,6 +20,10 @@ public class Coord implements Serializable {
         this.y = y-1;
     }
 
+    /**
+     * Human Display
+     * @return string
+     */
     public String toString(){
         return "("+x+")"+" "+"("+y+")";
     }

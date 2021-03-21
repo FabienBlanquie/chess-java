@@ -1,15 +1,10 @@
 package game.chessPiece;
 
-import game.boardException.IllegalMove;
 import game.ChessBoard;
 import game.Color;
 import game.Coord;
 import game.Piece;
 import game.boardException.IllegalPosition;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static java.lang.Math.abs;
 
 /**
@@ -31,17 +26,21 @@ public class Bishop extends Piece {
     /**
      * Piece movement rule : diagonal move only
      * @param c new coordinate position
+     * @return true if the move is valid
      */
-
     @Override
     protected boolean isValidMove(Coord c) throws IllegalPosition {
-            if (abs(place.x - c.x) == abs(place.y - c.y)){
-                if (correctPath(place,c))
-                    return true;
-            }
-            return false;
+        if (abs(place.x - c.x) == abs(place.y - c.y)){
+            if (correctPath(place,c))
+                return true;
+        }
+        return false;
     }
 
+    /**
+     * Piece name in when used with the smartprint
+     * @return Piece name
+     */
     @Override
     public String toString(){
         return col == Color.WHITE ? " ♗ " : " ♝ ";
